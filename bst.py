@@ -175,3 +175,24 @@ class BST(object):
 
         gen = self._pre_order_gen()
         return gen
+
+    def _pre_order_gen(self):
+        """Recursive helper method for pre-order traversal."""
+        current = self.root
+
+        while len(self.visited) < self.tree_size:
+            if current.val not in self.visited:
+                self.visited.append(current.val)
+                yield current.val
+
+            if current.left:
+                if current.left.val not in self.visited:
+                    current = current.left
+                    continue
+
+            if current.right:
+                if current.right.val not in self.visited:
+                    current = current.right
+                    continue
+
+            current = current.parent
