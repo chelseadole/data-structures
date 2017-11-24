@@ -206,3 +206,34 @@ class BST(object):
 
         gen = self._post_order_gen()
         return gen
+
+    def _post_order_gen(self):
+        """Recursive helper method for post-order traversal."""
+        current = self.root
+
+        while len(self.visited) < self.tree_size:
+            if current.left:
+                if current.left.val not in self.visited:
+                    current = current.left
+                    continue
+
+            if current.right:
+                if current.right.val not in self.visited:
+                    current = current.right
+                    continue
+
+            if current.val not in self.visited:
+                self.visited.append(current.val)
+                yield current.val
+
+            current = current.parent
+
+    def breadth_first(self):
+        """Return a generator to perform a breadth-first traversal."""
+        self.visited = []
+
+        if self.root is None:
+            raise IndexError("Tree is empty!")
+
+        gen = self._breadth_first_gen(self.root)
+        return gen
