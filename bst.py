@@ -78,7 +78,6 @@ class BST(object):
             self.root = new_node
             self.tree_size += 1
 
-
     def _find_home(self, node_to_add, node_to_check):
         """.
         Check if the node_to_add belongs on the left or right

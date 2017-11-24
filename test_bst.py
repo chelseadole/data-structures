@@ -182,8 +182,6 @@ def test_node_left_and_right_attributes_change():
     assert b.root.left.val == 4
     assert b.root.right.val == 6
 
-# NOTE: THERE WILL BE PROBS WITH DOT NOTATION IN PREVIOUS TWO TESTS
-
 
 def test_root_val_with_no_val_at_initialization(sample_bst):
     """Test that root is None."""
