@@ -237,3 +237,22 @@ class BST(object):
 
         gen = self._breadth_first_gen(self.root)
         return gen
+
+    def _breadth_first_gen(self, root_node):
+        """Helper generator for breadth-first traversal."""
+        queue = [self.root]
+        while queue:
+            current = queue[0]
+            yield current.val
+            queue = queue[1:]
+
+            if current not in self.visited:
+                self.visited.append(current)
+
+            if current.left:
+                if current.left not in self.visited:
+                    queue.append(current.left)
+
+            if current.right:
+                if current.right not in self.visited:
+                    queue.append(current.right)
