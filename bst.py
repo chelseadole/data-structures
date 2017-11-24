@@ -196,3 +196,13 @@ class BST(object):
                     continue
 
             current = current.parent
+
+    def post_order(self):
+        """Return a generator to perform an post-order traversal."""
+        self.visited = []
+
+        if self.root is None:
+            raise IndexError("Tree is empty!")
+
+        gen = self._post_order_gen()
+        return gen
