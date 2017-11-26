@@ -237,7 +237,10 @@ def test_breadth_first_size_one(sample_bst):
     gen = sample_bst.breadth_first()
     assert next(gen) == 1
 
+
 LEFT_IMBALANCED = [6, 5, 4, 3, 2, 1]
+RIGHT_IMBALANCED = [1, 2, 3, 4, 5, 6]
+SAMPLE_TREE = [20, 12, 10, 1, 11, 16, 30, 42, 28, 27]
 
 
 def test_in_order_left_imba():
@@ -279,8 +282,6 @@ def test_breadth_first_left_imba():
         output.append(next(gen))
     assert output == [6, 5, 4, 3, 2, 1]
 
-RIGHT_IMBALANCED = [1, 2, 3, 4, 5, 6]
-
 
 def test_in_order_right_imba():
     """Check for the correct output of iot on a right-imbalanced tree."""
@@ -320,8 +321,6 @@ def test_breadth_first_right_imba():
     for i in range(6):
         output.append(next(gen))
     assert output == [1, 2, 3, 4, 5, 6]
-
-SAMPLE_TREE = [20, 12, 10, 1, 11, 16, 30, 42, 28, 27]
 
 
 def test_in_order_sample_tree():
