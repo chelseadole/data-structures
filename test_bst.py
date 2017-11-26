@@ -17,8 +17,8 @@ def test_bst_exists(sample_bst):
     assert sample_bst
 
 
-def test_bst_can_take_list():
-    """Test that the BST can take a list as a param."""
+def test_bst_can_take_list_at_initialization():
+    """Test that the BST can take a list."""
     from bst import BST
     b = BST([1, 2, 3])
     assert b.size() == 3
@@ -27,8 +27,8 @@ def test_bst_can_take_list():
     assert b.right_depth == 2
 
 
-def test_bst_can_take_tuple():
-    """Test that the BST can take a tuple as a param."""
+def test_bst_can_take_tuple_at_initialization():
+    """Test that the BST can take a tuple."""
     from bst import BST
     b = BST((1, 2, 3))
     assert b.size() == 3
@@ -37,14 +37,23 @@ def test_bst_can_take_tuple():
     assert b.right_depth == 2
 
 
-def test_bst_can_take_string():
-    """Test that the BST can take a string as a param."""
+def test_bst_can_take_string_at_initialization():
+    """Test that the BST can take a string."""
     from bst import BST
     b = BST('abc')
     assert b.size() == 3
     assert b.depth() == 2
     assert b.left_depth == 0
     assert b.right_depth == 2
+
+
+def test_insert_increases_depth(sample_bst):
+    """Test that the insert method increases the output of the depth method."""
+    assert sample_bst.depth() == 0
+    sample_bst.insert(1)
+    assert sample_bst.depth() == 0
+    sample_bst.insert(2)
+    assert sample_bst.depth() == 1
 
 
 def test_insert_increases_size(sample_bst):
@@ -63,15 +72,6 @@ def test_insert_increases_tree_size(sample_bst):
     assert sample_bst.tree_size == 1
     sample_bst.insert(2)
     assert sample_bst.tree_size == 2
-
-
-def test_insert_increases_depth(sample_bst):
-    """Test that the insert method increases the output of the depth method."""
-    assert sample_bst.depth() == 0
-    sample_bst.insert(1)
-    assert sample_bst.depth() == 0
-    sample_bst.insert(2)
-    assert sample_bst.depth() == 1
 
 
 def test_search_right(sample_bst):
