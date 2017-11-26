@@ -9,7 +9,7 @@ setup(
     author_email='chelseadole@gmail',
     package_dir={' ': 'src'},
     py_modules=['bst'],
-    install_requires=[],
+    install_requires=['timeit'],
     extras_require={
         'test': ['pytest', 'pytest-cov', 'pytest-watch', 'tox'],
         'development': ['ipython']})
