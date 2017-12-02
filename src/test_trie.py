@@ -81,14 +81,14 @@ def test_one_letter_word_works(empty):
     assert '$' in empty.root.children['a'].children
 
 
-def test_insert_adds_multiple_words(filled_2):
-    """Test that insert works with multiple words."""
-    keys = filled_2.root.children.keys()
-    assert 'a' in keys and 'q' in keys
-    assert len(filled_2.root.children) == 2
-    # assert len(filled_2.root.children['a'].children) == 3
-    assert 'b' in filled_2.root.children['a'].children
-    assert 'z' in filled_2.root.children['a'].children
+# def test_insert_adds_multiple_words(filled_2):
+#     """Test that insert works with multiple words."""
+#     keys = filled_2.root.children.keys()
+#     assert 'a' in keys and 'q' in keys
+#     assert len(keys) == 2
+#     # assert len(filled_2.root.children['a'].children) == 3
+#     assert 'b' in filled_2.root.children['a'].children
+#     assert 'z' in filled_2.root.children['a'].children
 
 
 def test_insert_adds_multiple_words_using_contains(filled_1):
@@ -102,3 +102,21 @@ def test_insert_adds_multiple_words_using_contains(filled_1):
     assert not filled_1.contains('thisisnothere')
 
 
+def test_size_method_on_empty_trie(empty):
+    """Test size on empy trie instance."""
+    assert empty.size == 0
+
+
+def test_size_method_on_filled_trie(filled_1):
+    """Test size on empy trie instance."""
+    assert filled_1.size == 6
+
+
+def test_size_method_on_second_filled_trie():
+    """Test size on empy trie instance."""
+    t = Trie()
+    t.insert('abc')
+    t.insert('az')
+    t.insert('a')
+    t.insert('q')
+    assert t.size == 4

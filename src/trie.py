@@ -43,10 +43,8 @@ class Trie(object):
     def contains(self, word):
         """Return True if word in trie."""
         current = self.root
-        # if len(word) == 1:
-        #     import pdb; pdb.set_trace()
-        #     if '$' in current.children[word].children:
-        #         return True
+        if len(word) == 1 and word in current.children:
+            return False
         while word:
             if word[0] in current.children:
                 current = current.children[word[0]]
