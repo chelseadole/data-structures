@@ -52,3 +52,12 @@ def test_word_ends_after_bling_sign(empty):
     assert 'a' in empty.root.children
     assert '$' in empty.root.children['a'].children
     assert empty.root.children['a'].children['$'].children == {}
+
+
+def test_word_is_not_added_twice(empty):
+    """Test that the same word cannot be added twice."""
+    empty.insert('yo')
+    a = empty.root.children
+    empty.insert('yo')
+    b = empty.root.children
+    assert a == b
