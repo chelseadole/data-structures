@@ -4,10 +4,11 @@
 class Node(object):
     """Node class."""
 
-    def __init__(self, letter=None):
+    def __init__(self, letter=None, end=False):
         """Initialization of Trie node attributes."""
         self.letter = letter
         self.children = {}
+        self.end = end
 
     def __iter__(self):
         """Make children iterable."""
@@ -36,7 +37,7 @@ class Trie(object):
                 current.children.setdefault(word[0], Node(word[0]))
                 current = current.children[word[0]]
                 word = word[1:]
-        current.children['$'] = Node()
+        current.end = True
         self.size += 1
         return
 
@@ -51,6 +52,8 @@ class Trie(object):
                 word = word[1:]
             else:
                 return False
+        if not current.end:
+            return False
         return True
 
     def size(self):

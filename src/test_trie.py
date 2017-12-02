@@ -40,6 +40,7 @@ def test_created_node_has_attributes():
     n = Node()
     assert n.letter is None
     assert n.children == {}
+    assert n.end is False
 
 
 def test_trie_has_correct_attributes(empty):
@@ -54,15 +55,13 @@ def test_insert_adds_word_to_trie(empty):
     assert 'a' in empty.root.children
     assert 'b' in empty.root.children['a'].children
     assert 'c' in empty.root.children['a'].children['b'].children
-    assert '$' in empty.root.children['a'].children['b'].children['c'].children
 
 
-def test_word_ends_after_bling_sign(empty):
-    """Test that nothing comes after the '$' sign inserted."""
+def test_word_has_end_attribute(empty):
+    """Test that nothing comes after the  sign inserted."""
     empty.insert('a')
     assert 'a' in empty.root.children
-    assert '$' in empty.root.children['a'].children
-    assert empty.root.children['a'].children['$'].children == {}
+    assert empty.root.children['a'].end is True
 
 
 def test_word_is_not_added_twice(empty):
@@ -78,8 +77,6 @@ def test_one_letter_word_works(empty):
     """Test insert method on one letter word."""
     empty.insert('a')
     assert len(empty.root.children) == 1
-    assert '$' in empty.root.children['a'].children
-
 
 # def test_insert_adds_multiple_words(filled_2):
 #     """Test that insert works with multiple words."""
@@ -102,6 +99,13 @@ def test_insert_adds_multiple_words_using_contains(filled_1):
     assert not filled_1.contains('thisisnothere')
 
 
+def test_contains_where_it_returns_false(filled_2, filled_1):
+    """Test false contains."""
+    assert not filled_2.contains('nooooope')
+    assert not filled_1.contains('h')
+    assert not filled_1.contains('good')
+
+
 def test_size_method_on_empty_trie(empty):
     """Test size on empy trie instance."""
     assert empty.size == 0
@@ -120,3 +124,5 @@ def test_size_method_on_second_filled_trie():
     t.insert('a')
     t.insert('q')
     assert t.size == 4
+
+
