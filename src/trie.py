@@ -42,11 +42,16 @@ class Trie(object):
         current = self.root
         if self.contains(word):
             return
-        while word:
-            current.children.setdefault(word[0], Node(word[0]))
-            current = current.children[word[0]]
-            word = word[1:]
-        current.children['$'] = Node()
+        if len(word) == 1:
+            word_node = Node(word[0])
+            current.children[word] = word_node
+            word_node.children['$'] = Node()
+        else:
+            while word:
+                current.children.setdefault(word[0], Node(word[0]))
+                current = current.children[word[0]]
+                word = word[1:]
+            current.children['$'] = Node()
         return
 
     def contains(self, word):
