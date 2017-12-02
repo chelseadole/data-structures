@@ -77,17 +77,16 @@ def test_word_is_not_added_twice(empty):
 def test_one_letter_word_works(empty):
     """Test insert method on one letter word."""
     empty.insert('a')
-    assert len(empty.children) == 1
-    assert '$' in empty.children['a'].children
+    assert len(empty.root.children) == 1
+    assert '$' in empty.root.children['a'].children
 
 
 def test_insert_adds_multiple_words(filled_2):
     """Test that insert works with multiple words."""
     keys = filled_2.root.children.keys()
-    assert 'a' in keys
-    assert 'q' in keys
+    assert 'a' in keys and 'q' in keys
     assert len(filled_2.root.children) == 2
     import pdb; pdb.set_trace()
-    assert len(filled_2.root.children['a'].children) == 2
+    assert len(filled_2.root.children['a'].children) == 3
     assert 'b' in filled_2.root.children['a']
     assert 'z' in filled_2.root.children['a']
