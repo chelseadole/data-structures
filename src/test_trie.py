@@ -89,3 +89,16 @@ def test_insert_adds_multiple_words(filled_2):
     # assert len(filled_2.root.children['a'].children) == 3
     assert 'b' in filled_2.root.children['a'].children
     assert 'z' in filled_2.root.children['a'].children
+
+
+def test_insert_adds_multiple_words_using_contains(filled_1):
+    """Test combo of contains and insert method."""
+    assert filled_1.contains('hello')
+    assert filled_1.contains('goodbye')
+    assert filled_1.contains('helsinki')
+    assert filled_1.contains('goodlord')
+    assert filled_1.contains('squish')
+    assert filled_1.contains('heckingoodboye')
+    assert not filled_1.contains('thisisnothere')
+
+
