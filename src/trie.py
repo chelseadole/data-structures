@@ -37,6 +37,7 @@ class Trie(object):
                 current = current.children[word[0]]
                 word = word[1:]
         current.children['$'] = Node()
+        self.size += 1
         return
 
     def contains(self, word):
@@ -53,6 +54,10 @@ class Trie(object):
             else:
                 return False
         return True
+
+    def size(self):
+        """Return number of words in Trie tree."""
+        return self.size
 
 if __name__ == "__main__":
     t = Trie()
