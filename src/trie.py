@@ -10,3 +10,11 @@ class Node(object):
         self.children = {}
 
 
+class Trie(object):
+    """Trie class."""
+
+    def __init__(self):
+        """Initialization of Trie tree."""
+        self.root = Node('*')
+        self.size = 0
+
