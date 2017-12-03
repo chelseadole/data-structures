@@ -4,10 +4,11 @@
 class Node(object):
     """Node class."""
 
-    def __init__(self, letter=None, end=False):
+    def __init__(self, letter=None, parent=None, end=False):
         """Initialization of Trie node attributes."""
         self.letter = letter
         self.children = {}
+        self.parent = parent
         self.end = end
 
     def __iter__(self):
@@ -26,10 +27,10 @@ class Trie(object):
     def insert(self, word):
         """Insert a new word into the tree."""
         current = self.root
-        if self.contains(word):
+        if self.contains(word) or type(word) is not str:
             return
         for letter in word:
-            current.children.setdefault(letter, Node(letter))
+            current.children.setdefault(letter, Node(letter, current))
             current = current.children[letter]
         current.end = True
         self.size += 1
@@ -52,5 +53,16 @@ class Trie(object):
 
     def remove(self, word):
         """Remove word from trie."""
-        if not self.contains(word):
-            raise KeyError('This word is not in the Trie.')
+        # if not self.contains(word):
+        #     raise KeyError('This word is not in the Trie.')
+        # current = self.root
+        # for letter in word:
+        current = self.root
+        for letter in range(len(word - 1)):
+            if letter not in current.children:
+                raise TypeError('This word is not in Trie.')
+            current = current.children[letter]
+        current = current.parent
+        while len(current.children) == 1:
+            current.children.clear()
+            current = current.parent
