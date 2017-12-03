@@ -10,6 +10,8 @@
 
 * **Binary Search Tree** — *a BST is a "tree shaped" data structure containing nodes. Each node can have a maximum of two children or "leaves," and all node values are properly located based on its parents and siblings values. Nodes to the left of the "root"/head node have values smaller than the root. Those to the right have values larger than the root. There are no duplicate values.* 
 
+* **Trie Tree** - *a Trie Tree is a "tree shaped" data structure containing nodes with references to letters. These nodes string together (using each node's "children" and "parent" attriutes) to form words. This tree allows for quick lookup time of words, and is used for things such as word suggestion/auto-complete.*
+
 ## Time Complexities:
 
 * balance() = *This BST function returns the balance (or size difference) between the left and right parts of the tree. Its runtime is O(1), because it always takes the same amount of time to run regardless of tree size, and only performs simple subtraction.*
@@ -31,4 +33,12 @@
 * post_order() = *This BST traversal function returns a generator that outputs the node values in order of the bottom-most left node, the bottom-most right node, and then those nodes' parent. Then it backs up, and repeats this action with the parent as a new child node, until the whole tree has been traversed. Like in_order and pre_order, it has a runtime of O(n), not because you visit every node once (you visit them more than once here) but because the work you do/time you take is constant and grows constantly per node addition.*
 
 * breadth_first() = *This BST traversal returns a generator that outputs the node values in order of their "levels". It produces first the root, then all nodes (left to right) in the first depth level, then all nodes (left to right) in the second depth level, et cetera. Like in_order, pre_order, and post_order, it has a runtime of O(n), not because you visit every node once (you visit them more than once here) but because the work you do/time you take is constant and grows constantly per node addition.*
+
+* insert() = *This Trie insert method adds a word to the trie tree. It first checks to see if the word is already in the tree (in which case it does nothing). Then, it goes through each letter of the word and uses the dictionary function setdefault to add a new letter node if it doesn't already exist, and string together the letters. Finally, it increases the tree's size attribute.*
+
+* contains() = *This Trie method checks if the tree contains a certain word. It does this by iterating through each letter of the word and checking if the letter node's children dictionary contains a key to the next letter in the word. If at any point it doesnt (or if the last letter of the word doesn't have the "end" attribute as True) it returns False.*
+
+* size() = *This Trie method returns the number of words in the tree by returning the tree's size attribute, which is incremented and decremented in insert() and remove() respectively.*
+
+* remove() = *This Trie method removes a word from the tree. First it traverses to the node of the last letter of the tree (and raises an error if the word doesnt exist). Once at the last letter, it moves backwards, deleting references to the children/letters below.*
 
