@@ -53,12 +53,8 @@ class Trie(object):
 
     def remove(self, word):
         """Remove word from trie."""
-        # if not self.contains(word):
-        #     raise KeyError('This word is not in the Trie.')
-        # current = self.root
-        # for letter in word:
         current = self.root
-        for letter in range(len(word - 1)):
+        for letter in word:
             if letter not in current.children:
                 raise TypeError('This word is not in Trie.')
             current = current.children[letter]
@@ -66,3 +62,4 @@ class Trie(object):
         while len(current.children) == 1:
             current.children.clear()
             current = current.parent
+        self.size -= 1
