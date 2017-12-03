@@ -42,31 +42,21 @@ class Trie(object):
         return
 
     def contains(self, word):
-        """Return True if word in trie."""
+        """Check if Trie contains word."""
         current = self.root
-        if len(word) == 1 and word in current.children:
-            return False
-        while word:
-            if word[0] in current.children:
-                current = current.children[word[0]]
-                word = word[1:]
-            else:
+        for letter in word:
+            if letter not in current.children:
                 return False
-        if not current.end:
-            return False
-        return True
+            current = current.children[letter]
+        if current.end:
+            return True
+        return False
 
     def size(self):
         """Return number of words in Trie tree."""
         return self.size
 
-if __name__ == "__main__":
-    t = Trie()
-    t.insert('hello')
-    t.insert('hellogoodbye')
-    t.insert('helsinki')
-    print(t.contains('hello'))
-    print(t.contains('hellogoodbye'))
-    print(t.contains('helsinki'))
-    print(t.contains('ballsackery'))
-    print(t.contains('hellgo'))
+    def remove(self, word):
+        """Remove word from trie."""
+        if not self.contains(word):
+            raise KeyError('This word is not in the Trie.')
