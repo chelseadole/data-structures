@@ -258,6 +258,126 @@ class BST(object):
                 if current.right not in self.visited:
                     queue.append(current.right)
 
+    def delete(self, val):
+        """Delete the node with the given value from the tree."""
+        node = self.search(val)
+        if node is None:
+            return
+
+        self.tree_size -= 1
+        is_root = node == self.root
+        first_move_right = val > self.root.val
+        last_move_right = node == node.parent.right
+
+        if node.left is None and node.right is None:
+            if is_root:
+                self.root = None
+                return
+            if last_move_right:
+                node.parent.right = None
+                # self._rebalance(node.parent)
+                return
+            node.parent.left = None
+            # self._rebalance(node.parent)
+            return
+
+        if node.left is None:
+            if is_root:
+                node.right.parent = None
+                self.root = node.right
+                self.root.depth = 0
+                self.right_depth = self._reassess_depths(self.root.right)
+                return
+            if last_move_right:
+                node.parent.right = node.right
+                node.right.parent = node.parent
+
+            else:
+                node.parent.left = node.right
+                node.right.parent = node.parent
+
+            if first_move_right:
+                self.right_depth = self._reassess_depths(node.right)
+                # self._rebalance(node.parent)
+                return
+            self.left_depth = self._reassess_depths(node.right)
+            # self._rebalance(node.parent)
+            return
+
+        if node.right is None:
+            if is_root:
+                node.left.parent = None
+                self.root = node.left
+                self.root.depth = 0
+                self.left_depth = self._reassess_depths(self.root.left)
+                return
+            if last_move_right:
+                node.parent.right = node.left
+                node.left.parent = node.parent
+
+            node.parent.left = node.left
+            node.left.parent = node.parent
+            if first_move_right:
+                    self.right_depth = self._reassess_depths(node.left)
+                    # self._rebalance(node.parent)
+                    return
+            self.left_depth = self._reassess_depths(node.left)
+            # self._rebalance(node.parent)
+            return
+        else:
+            replacement_node = self._locate_replacement_node(node)
+            self.delete(replacement_node.val)
+
+            if is_root:
+                self.root = replacement_node
+                replacement_node.parent = None
+                replacement_node.depth = 0
+
+            else:
+                replacement_node.parent = node.parent
+                replacement_node.depth = node.depth
+
+            replacement_node.left = node.left
+            replacement_node.right = node.right
+            node.left.parent = replacement_node
+            node.right.parent = replacement_node
+            if first_move_right or is_root:
+                self.right_depth = self._reassess_depths(self.root.right)
+
+            else:
+                self.left_depth = self._reassess_depths(self.root.left)
+
+            # if node.parent:
+                # self._rebalance(node.parent)
+            return
+
+    def _reassess_depths(self, starting_node):
+        """Fix the depth of nodes below the starting_node an return the max_depth."""
+        self.max_depth = 0
+
+        if starting_node:
+            self.visited = []
+            queue = [starting_node]
+            while queue:
+                current = queue[0]
+                current.depth = current.parent.depth + 1
+                if current.depth > self.max_depth:
+                    self.max_depth = current.depth
+                queue = queue[1:]
+
+                if current not in self.visited:
+                    self.visited.append(current)
+
+                if current.left:
+                    if current.left not in self.visited:
+                        queue.append(current.left)
+
+                if current.right:
+                    if current.right not in self.visited:
+                        queue.append(current.right)
+
+        return self.max_depth - starting_node.parent.depth
+
 
 if __name__ == '__main__':  # pragma: no cover
     left_bigger = BST([6, 5, 4, 3, 2, 1])
