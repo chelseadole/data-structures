@@ -22,7 +22,7 @@ class Trie(object):
     def __init__(self):
         """Initialization of Trie tree."""
         self.root = Node('*')
-        self.size = 0
+        self.tree_size = 0
 
     def insert(self, word):
         """Insert a new word into the tree."""
@@ -33,7 +33,7 @@ class Trie(object):
             current.children.setdefault(letter, Node(letter, current))
             current = current.children[letter]
         current.end = True
-        self.size += 1
+        self.tree_size += 1
         return
 
     def contains(self, word):
@@ -49,7 +49,7 @@ class Trie(object):
 
     def size(self):
         """Return number of words in Trie tree."""
-        return self.size
+        return self.tree_size
 
     def remove(self, word):
         """Remove word from trie."""
@@ -62,4 +62,4 @@ class Trie(object):
         while len(current.children) == 1:
             current.children.clear()
             current = current.parent
-        self.size -= 1
+        self.tree_size -= 1

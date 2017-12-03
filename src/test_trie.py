@@ -79,15 +79,14 @@ def test_one_letter_word_works(empty):
     assert len(empty.root.children) == 1
 
 
-# def test_insert_adds_multiple_words(filled_2):
-#     """Test that insert works with multiple words."""
-#     keys = filled_2.root.children.keys()
-#     assert 'a' in keys and 'q' in keys
-#     assert len(keys) == 2
-#     import pdb; pdb.set_trace()
-#     # assert len(filled_2.root.children['a'].children) == 3
-#     assert 'b' in filled_2.root.children['a'].children
-#     assert 'z' in filled_2.root.children['a'].children
+def test_insert_adds_multiple_words(filled_2):
+    """Test that insert works with multiple words."""
+    keys = filled_2.root.children.keys()
+    assert 'a' in keys and 'q' in keys
+    assert len(keys) == 2
+    assert len(filled_2.root.children['a'].children) == 2
+    assert 'b' in filled_2.root.children['a'].children
+    assert 'z' in filled_2.root.children['a'].children
 
 
 def test_insert_adds_multiple_words_using_contains(filled_1):
@@ -111,12 +110,12 @@ def test_contains_where_it_returns_false(filled_2, filled_1):
 
 def test_size_method_on_empty_trie(empty):
     """Test size on empy trie instance."""
-    assert empty.size == 0
+    assert empty.size() == 0
 
 
 def test_size_method_on_filled_trie(filled_1):
     """Test size on empy trie instance."""
-    assert filled_1.size == 6
+    assert filled_1.size() == 6
 
 
 def test_size_method_on_second_filled_trie():
@@ -126,6 +125,33 @@ def test_size_method_on_second_filled_trie():
     t.insert('az')
     t.insert('a')
     t.insert('q')
-    assert t.size == 4
+    assert t.size() == 4
 
 
+def test_remove_method_doesnt_work_without_word(filled_1):
+    """Test that the size method will raise TypeError."""
+    with pytest.raises(TypeError):
+        filled_1.remove('thiswordisnotindict')
+
+
+def test_remove_will_remove_word_from_dict(filled_1):
+    """Test remove method will remove word off Trie."""
+    assert filled_1.contains('heckingoodboye')
+    filled_1.remove('heckingoodboye')
+    assert filled_1.contains('heckingoodboye') is False
+
+
+def test_remove_wont_remove_words_with_same_beginning(empty):
+    """Test that remove method wont remove words if they start with the same letters."""
+    empty.insert('antidisestablishmentarianism')
+    empty.insert('antimatter')
+    empty.remove('antimatter')
+    assert empty.contains('antidisestablishmentarianism')
+    assert empty.contains('antimatter') is False
+
+
+def test_size_decreases_with_removing_node(filled_2):
+    """Test size of tree reduces with you delete a word."""
+    assert filled_2.size() == 4
+    filled_2.remove('az')
+    assert filled_2.size() == 3
