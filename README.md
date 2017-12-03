@@ -2,7 +2,7 @@
 
 **Author**: Chelsea Dole
 
-**Coverage**: [Build Status](https://travis-ci.org/chelseadole/data-structures.svg?branch=master)
+**Coverage**: [![Build Status](https://travis-ci.org/chelseadole/data-structures.svg?branch=master)](https://travis-ci.org/chelseadole/data-structures)
 
 **Resources/Shoutouts**: Nathan Moore (lab partner/amigo)
 
