@@ -2,6 +2,8 @@
 
 **Author**: Chelsea Dole
 
+**Coverage**: [Build Status](https://travis-ci.org/chelseadole/data-structures.svg?branch=master)
+
 **Resources/Shoutouts**: Nathan Moore (lab partner/amigo)
 
 **Testing Tools**: pytest, pytest-cov
