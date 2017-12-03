@@ -61,5 +61,6 @@ class Trie(object):
         current = current.parent
         while len(current.children) == 1:
             current.children.clear()
-            current = current.parent
+            if current.parent:
+                current = current.parent
         self.tree_size -= 1

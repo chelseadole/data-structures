@@ -134,6 +134,14 @@ def test_remove_method_doesnt_work_without_word(filled_1):
         filled_1.remove('thiswordisnotindict')
 
 
+def test_deleting_single_word(empty):
+    """."""
+    empty.insert('ace')
+    empty.remove('ace')
+    assert empty.size() == 0
+    assert empty.contains('ace') is False
+
+
 def test_remove_will_remove_word_from_dict(filled_1):
     """Test remove method will remove word off Trie."""
     assert filled_1.contains('heckingoodboye')
