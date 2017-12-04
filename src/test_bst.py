@@ -138,15 +138,6 @@ def test_that_bst_doesnt_work_with_non_iterable():
         BST({0: 0, 1: 1, 2: 2})
 
 
-def test_adding_preexisting_node_is_not_added(sample_bst):
-    """Test that adding a node val that exists does not increase BST."""
-    assert sample_bst.size() == 0
-    sample_bst.insert(5)
-    sample_bst.insert(5)
-    sample_bst.insert(5)
-    assert sample_bst.size() == 1
-
-
 def test_that_negative_numbers_work_with_insert(sample_bst):
     """Test that negative numbers are covered in insert."""
     sample_bst.insert(-500)
@@ -368,3 +359,48 @@ def test_delete_node_that_doesnt_exist():
     tree = BST([5, 3, 2, 15, 44, 100])
     assert tree.delete(20) is None
 
+
+def test_delete_node_that_does_exist(sample_bst):
+    """Test deleting node, basic functionality."""
+    sample_bst.insert(20)
+    sample_bst.insert(300000)
+    sample_bst.insert(300)
+    assert sample_bst.contains(300)
+    sample_bst.delete(300)
+    assert sample_bst.contains(300) is False
+
+
+def test_deleting_node_reduces_tree_size(sample_bst):
+    """Test size and delete together."""
+    sample_bst.insert(2)
+    sample_bst.insert(3)
+    assert sample_bst.size() == 2
+    sample_bst.delete(3)
+    assert sample_bst.size() == 1
+
+
+def test_delete_left_imba():
+    """Test that delete works on a left-imbalanced tree."""
+    tree = BST(LEFT_IMBALANCED)
+    tree.delete(6)
+    assert tree.size() == 5 and tree.root.val == 5
+    tree.delete(1)
+    assert tree.size() == 4 and tree.root.val == 5
+
+
+def test_delete_right_imba():
+    """Test that delete works on a right-imbalanced tree."""
+    tree = BST(RIGHT_IMBALANCED)
+    tree.delete(6)
+    assert tree.size() == 5 and tree.root.val == 1
+    tree.delete(1)
+    assert tree.size() == 4 and tree.root.val == 2
+
+
+def test_delete_on_sample_tree():
+    """Test that delete works on a right-imbalanced tree."""
+    tree = BST(SAMPLE_TREE)
+    tree.delete(16)
+    assert tree.size() == 9 and tree.root.val == 20
+    tree.delete(28)
+    assert tree.size() == 8 and tree.root.val == 20
