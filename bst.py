@@ -398,6 +398,34 @@ class BST(object):
             current = current.left
         return current
 
+    def _rebalance(self, node):
+        """Rebalance a subtree, and if its root has a parent, recur on it."""
+        node_balance = self.balance(node)
+
+        if node_balance == 2:
+            child_balance = self.balance(node.right)
+
+            if child_balance == 1:
+                self._rotate_left(node)
+
+            if child_balance == -1:
+                self._rotate_right(node.right)
+                self._rotate_left(node)
+
+        if node_balance == -2:
+            child_balance = self.balance(node.left)
+
+            if child_balance == 1:
+                self._rotate_left(node.left)
+                self._rotate_right(node)
+
+            if child_balance == -1:
+                self._rotate_right(node)
+
+        # if node.parent:
+            # self._rebalance(node.parent)
+
+
 
 if __name__ == '__main__':  # pragma: no cover
     left_bigger = BST([6, 5, 4, 3, 2, 1])
