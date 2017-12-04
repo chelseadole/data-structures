@@ -425,6 +425,25 @@ class BST(object):
         # if node.parent:
             # self._rebalance(node.parent)
 
+    def _rotate_left(self, node):
+        """Rotate a node leftwards around its right child."""
+        pivot_node = node.right
+
+        if node.parent:
+            node.parent.left = pivot_node
+
+        else:
+            self.root = pivot_node
+
+        pivot_node.parent = node.parent
+        node.parent = pivot_node
+
+        if pivot_node.left:
+            pivot_node.left.parent = node
+
+        node.right = pivot_node.left
+        pivot_node.left = node
+
 
 
 if __name__ == '__main__':  # pragma: no cover
