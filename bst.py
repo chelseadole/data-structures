@@ -391,6 +391,13 @@ class BST(object):
 
         return self.max_depth - starting_node.parent.depth
 
+    def _locate_replacement_node(self, starting_node):
+        """Return the lowest-valued node on the right side of the sub-tree."""
+        current = starting_node.right
+        while current.left:
+            current = current.left
+        return current
+
 
 if __name__ == '__main__':  # pragma: no cover
     left_bigger = BST([6, 5, 4, 3, 2, 1])
