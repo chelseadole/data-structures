@@ -67,6 +67,7 @@ class BST(object):
                     self._find_home(new_node, self.root.right)
                     if new_node.depth > self.right_depth:
                         self.right_depth = new_node.depth
+                    self.tree_size += 1
                 else:
                     new_node.parent = self.root
                     self.root.right = new_node
@@ -80,6 +81,8 @@ class BST(object):
                     self._find_home(new_node, self.root.left)
                     if new_node.depth > self.left_depth:
                         self.left_depth = new_node.depth
+                    self.tree_size += 1
+
                 else:
                     new_node.parent = self.root
                     self.root.left = new_node
@@ -157,7 +160,7 @@ class BST(object):
             raise IndexError("Tree is empty!")
 
         gen = self._in_order_gen()
-        return geng
+        return gen
 
     def _in_order_gen(self):
         """Recursive helper method for in-order traversal."""

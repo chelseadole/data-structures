@@ -361,3 +361,10 @@ def test_breadth_first_sample_tree():
     for i in range(10):
         output.append(next(gen))
     assert output == [20, 12, 30, 10, 16, 28, 42, 1, 11, 27]
+
+
+def test_delete_node_that_doesnt_exist():
+    """Test deleting a nonexistant node from BST."""
+    tree = BST([5, 3, 2, 15, 44, 100])
+    assert tree.delete(20) is None
+
