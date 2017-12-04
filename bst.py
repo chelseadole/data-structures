@@ -464,7 +464,6 @@ class BST(object):
         pivot_node.right = node
 
 
-
 if __name__ == '__main__':  # pragma: no cover
     left_bigger = BST([6, 5, 4, 3, 2, 1])
     right_bigger = BST([1, 2, 3, 4, 5, 6])
