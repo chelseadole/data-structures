@@ -37,9 +37,21 @@ class BST(object):
             raise TypeError('Only iterables or None\
                 are valid parameters!')
 
-    def balance(self):
-        """Return the current balance of the BST."""
-        return self.right_depth - self.left_depth
+    def balance(self, starting_node=None):
+            """Return the current balance of a tree or subtree."""
+            if not starting_node:
+                return self.right_depth - self.left_depth
+
+            r_depth = 0
+            l_depth = 0
+
+            if starting_node.right:
+                r_depth += self._reassess_depths(starting_node.right)
+
+            if starting_node.left:
+                l_depth += self._reassess_depths(starting_node.left)
+
+            return r_depth - l_depth
 
     def size(self):
         """Return the current size of the BST."""
