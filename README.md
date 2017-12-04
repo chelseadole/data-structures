@@ -32,3 +32,7 @@
 
 * breadth_first() = *This BST traversal returns a generator that outputs the node values in order of their "levels". It produces first the root, then all nodes (left to right) in the first depth level, then all nodes (left to right) in the second depth level, et cetera. Like in_order, pre_order, and post_order, it has a runtime of O(n), not because you visit every node once (you visit them more than once here) but because the work you do/time you take is constant and grows constantly per node addition.*
 
+* delete() = *This BST method deletes a node if it exists, and returns None if it does not exist. It also rebalances the BST (using the internal _rebalance() method, and resets variables for tree_size. Its time complexity is O(n), because worst case scenario the node to delete is at the very end of a imbalanced tree, and therefore it must go through every node.*
+
+
+
