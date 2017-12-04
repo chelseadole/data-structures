@@ -104,7 +104,7 @@ class BST(object):
                 node_to_add.parent = node_to_check
                 node_to_check.right = node_to_add
                 node_to_check.right.depth = node_to_check.depth + 1
-                self.tree_size += 1
+                # self._rebalance(node_to_add.parent)
 
         elif node_to_add.val < node_to_check.val:
             if node_to_check.left:
@@ -113,7 +113,7 @@ class BST(object):
                 node_to_add.parent = node_to_check
                 node_to_check.left = node_to_add
                 node_to_check.left.depth = node_to_check.depth + 1
-                self.tree_size += 1
+                # self._rebalance(node_to_add.parent)
 
     def search(self, value):
         """If a value is in the BST, return its node."""
@@ -142,11 +142,12 @@ class BST(object):
         elif value < node_to_check.val and node_to_check.left:
             return self._check_for_equivalence(value, node_to_check.left)
 
-    def depth(self):
-        """Return the depth of the BST."""
-        if self.left_depth > self.right_depth:
-            return self.left_depth
-        return self.right_depth
+    def depth(self, starting_node=None):
+        """Return the depth of the tree or subtree."""
+        if not starting_node:
+            if self.left_depth > self.right_depth:
+                return self.left_depth
+            return self.right_depth
 
     def in_order(self):
         """Return a generator to perform an in-order traversal."""
@@ -156,7 +157,7 @@ class BST(object):
             raise IndexError("Tree is empty!")
 
         gen = self._in_order_gen()
-        return gen
+        return geng
 
     def _in_order_gen(self):
         """Recursive helper method for in-order traversal."""
