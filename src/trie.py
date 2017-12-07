@@ -64,3 +64,18 @@ class Trie(object):
             if current.parent:
                 current = current.parent
         self.tree_size -= 1
+
+    def trie_traversal(self, start='*'):
+        """Depth-first traveral of Trie."""
+        self.visited = []
+
+        curr = start
+        if start is not '*':
+            for char in start:
+                if char in curr.children:
+                    curr = curr.children[char]
+                return 'Invalid starting string.'
+
+        trie_gen = self._trie_gen(curr)
+        return trie_gen
+
