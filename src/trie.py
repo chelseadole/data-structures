@@ -82,7 +82,6 @@ class Trie(object):
     def _combo_gen(self, start):
         """."""
         for child, child_node in start.children.items():
-            import pdb; pdb.set_trace()
             self.visited.append(child)
             for node in child_node.children:
                 self.visited.append(child_node.children[node].letter)
@@ -104,3 +103,21 @@ class Trie(object):
             if child.end:
                 break
             yield self._recursive_depth(node.children[child])
+
+    def autocomplete(self, start):
+        """."""
+        curr = self.root
+        for letter in start:
+            if letter not in curr.children:
+                return []
+            curr = curr.children[letter]
+        return self._auto_helper(curr, start)
+
+    def _auto_helper(self, node, start):
+        """."""
+        if node.assert_end:
+            yield start
+        for letter in node.children:
+            for word in self._auto_helper(node.children[letter], start + letter):
+                yield word
+
