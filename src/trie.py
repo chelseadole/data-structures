@@ -65,28 +65,43 @@ class Trie(object):
                 current = current.parent
         self.tree_size -= 1
 
-    def trie_traversal(self, start='*'):
+    def trie_traversal(self, start=None):
         """Depth-first traveral of Trie."""
         self.visited = []
 
-        curr = start
-        if start is not '*':
+        if start:
+            curr = self.root
             for char in start:
                 if char in curr.children:
                     curr = curr.children[char]
                 return 'Invalid starting string.'
-
-        trie_gen = self._trie_gen(curr)
+            trie_gen = self._combo_gen(curr)
+        else:
+            trie_gen = self._combo_gen(self.root)
         return trie_gen
 
-    def _trie_gen(self, start):
+    def _combo_gen(self, start):
         """."""
-        for child in self.start.children.keys():
-            return self._recursive_depth(start.children[child])
+        for child, child_node in start.children.items():
+            import pdb; pdb.set_trace()
+            self.visited.append(child)
+            for node in child_node.children:
+                self.visited.append(child_node.children[node].letter)
+                if child_node.children[node].end:
+                    break
+                child_node.children = child_node.children[node].children
+        for let in self.visited:
+            yield let
+
+    def _trie_gen(self, start):
+        """Generator for traversal function."""
+        for child in start.children:
+            yield self._recursive_depth(start.children[child])
 
     def _recursive_depth(self, node):
-        """."""
+        """Recursive helper fn for generator."""
         self.visited.append(node.letter)
-        for child in node.children.keys():
-            self._recursive_depth(node.children[child])
-
+        for child in node.children:
+            if child.end:
+                return child.letter
+            return self._recursive_depth(node.children[child])
