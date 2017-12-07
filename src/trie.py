@@ -79,3 +79,14 @@ class Trie(object):
         trie_gen = self._trie_gen(curr)
         return trie_gen
 
+    def _trie_gen(self, start):
+        """."""
+        for child in self.start.children.keys():
+            return self._recursive_depth(start.children[child])
+
+    def _recursive_depth(self, node):
+        """."""
+        self.visited.append(node.letter)
+        for child in node.children.keys():
+            self._recursive_depth(node.children[child])
+
