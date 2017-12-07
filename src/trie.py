@@ -75,10 +75,9 @@ class Trie(object):
                 if char in curr.children:
                     curr = curr.children[char]
                 return 'Invalid starting string.'
-            trie_gen = self._combo_gen(curr)
+            return self._combo_gen(curr)
         else:
-            trie_gen = self._combo_gen(self.root)
-        return trie_gen
+            return self._combo_gen(self.root)
 
     def _combo_gen(self, start):
         """."""
@@ -87,8 +86,8 @@ class Trie(object):
             self.visited.append(child)
             for node in child_node.children:
                 self.visited.append(child_node.children[node].letter)
-                if child_node.children[node].end:
-                    break
+                if child_node.children[node].end and not child_node.children:
+                    continue
                 child_node.children = child_node.children[node].children
         for let in self.visited:
             yield let
@@ -96,12 +95,12 @@ class Trie(object):
     def _trie_gen(self, start):
         """Generator for traversal function."""
         for child in start.children:
-            yield self._recursive_depth(start.children[child])
+            return self._recursive_depth(start.children[child])
 
     def _recursive_depth(self, node):
         """Recursive helper fn for generator."""
         self.visited.append(node.letter)
         for child in node.children:
             if child.end:
-                return child.letter
-            return self._recursive_depth(node.children[child])
+                break
+            yield self._recursive_depth(node.children[child])
