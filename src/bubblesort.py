@@ -24,17 +24,17 @@ if __name__ == '__main__':  # pragama: no cover
                        setup="from __main__ import worst_case, bubblesort")
     time_3 = ti.timeit("bubblesort(random)",
                        setup="from __main__ import random, bubblesort")
-    print(f"""
-Bubblesort sorts an input numerically from smallest to largest number by 
+    print("""
+Bubblesort sorts an input numerically from smallest to largest number by
 stepping through each index, and (if the value of the index above it is lower)
 swapping the current index with the current index + 1.
 
 Input:[1, 2, 3, 4, 5]
-Sort time: {time_1}
+Sort time: {}
 
 Input:[5, 4, 3, 2, 1]
-Sort time: {time_2}
+Sort time: {}
 
 Input:list(range(5, 0, -1))
-Sort time: {time_3}
-    """)
+Sort time: {}
+    """.format(time_1, time_2, time_3))
