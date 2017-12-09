@@ -50,4 +50,3 @@ def test_bubble_sort_on_presorted_lst():
     """Bubble sort does not change input lst that is already sorted."""
     pre_sorted = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     assert bubblesort(pre_sorted) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
