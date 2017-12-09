@@ -46,4 +46,8 @@ def test_bubble_sort_works_on_negatives():
     assert bubblesort(neg_lst) == [-200, -30, -3, -1, 13, 20]
 
 
+def test_bubble_sort_on_presorted_lst():
+    """Bubble sort does not change input lst that is already sorted."""
+    pre_sorted = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    assert bubblesort(pre_sorted) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
