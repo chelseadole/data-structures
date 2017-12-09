@@ -14,6 +14,10 @@
 
 * **Trie Tree** - *a Trie Tree is a "tree shaped" data structure containing nodes with references to letters. These nodes string together (using each node's "children" and "parent" attriutes) to form words. This tree allows for quick lookup time of words, and is used for things such as word suggestion/auto-complete.*
 
+## Sorting Algorithms:
+
+* **Bubblesort** — *Bubblesort sorts an input numerically from smallest to largest number by stepping through each index, and (if the value of the index above it is lower) swapping the current index with the current index + 1. The runtime for this algorithm is O(n^2), because for each number in the input list, the algorithm must look over that number a number of times approximately equal to its square.* 
+
 ## Time Complexities:
 
 * balance() = *This BST function returns the balance (or size difference) between the left and right parts of the tree. Its runtime is O(1), because it always takes the same amount of time to run regardless of tree size, and only performs simple subtraction.*
