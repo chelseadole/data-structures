@@ -6,21 +6,17 @@ def merge_sort(a_list):
     if not isinstance(a_list, list):
         raise TypeError("Only list is a valid input type!")
 
-   if len(a_list) < 2:
+    if len(a_list) < 2:
         return a_list
 
-   parts = []
+    parts = [[i] for i in a_list]
 
-   output = []
-
-   for x in a_list:
-        parts.append([x])
-
-   while len(parts) > 1:
-        if len(parts[0]) == len(parts[1]):
-            parts.insert(0, _merge(parts.pop(0), parts.pop(1)))
+    while len(parts) > 1:
+        if len(parts[0]) == len(parts[1]) or len(parts) == 2:
+            parts.insert(0, _merge(parts.pop(0), parts.pop(0)))
         else:
-            parts.insert(0, _merge(parts.pop(0), _merge(parts.pop(1), parts.pop(2))))
+            parts.insert(0, _merge(parts.pop(0), _merge(parts.pop(0), parts.pop(0))))
+    return parts[0]
 
 
 def _merge(part_a, part_b):
@@ -32,13 +28,13 @@ def _merge(part_a, part_b):
         else:
             temp.append(part_b.pop(0))
 
-   while part_a:
+    while part_a:
         temp.append(part_a.pop(0))
 
-   while part_b:
+    while part_b:
         temp.append(part_b.pop(0))
 
-   return temp
+    return temp
 
 if __name__ == '__main__':  # pragama: no cover
     import timeit as ti
