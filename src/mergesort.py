@@ -50,7 +50,7 @@ if __name__ == '__main__':  # pragama: no cover
     time_3 = ti.timeit("merge_sort(random)",
                        setup="from __main__ import random, merge_sort")
     print("""
-Mergesort sorts shit by merging it recursively.
+Mergesort sorts shit by merging it.
 
 Input:[1, 2, 3, 4, 5]
 Sort time: {}
