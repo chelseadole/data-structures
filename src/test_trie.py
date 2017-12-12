@@ -163,3 +163,20 @@ def test_size_decreases_with_removing_node(filled_2):
     assert filled_2.size() == 4
     filled_2.remove('az')
     assert filled_2.size() == 3
+
+
+def test_trie_autocomplete_on_filled_tree_letter_h(filled_1):
+    """Autocomplete tests on filled tree."""
+    a = filled_1.autocomplete('h')
+    assert next(a) == 'hello'
+    assert next(a) == 'helsinki'
+    assert next(a) == 'heckingoodboye'
+
+
+def test_trie_autocomplete_on_filled_tree_letter_g(filled_1):
+    """Autocomplete tests on filled tree."""
+    a = filled_1.autocomplete('good')
+    assert next(a) == 'goodbye'
+    assert next(a) == 'goodlord'
+
+
