@@ -106,12 +106,14 @@ class Trie(object):
 
     def autocomplete(self, start):
         """Autocomplete using Trie Tree."""
-        curr = self.root
-        for letter in start:
-            if letter not in curr.children:
-                return []
-            curr = curr.children[letter]
-        return self._auto_helper(curr, start)
+        if isinstance(start, str):
+            curr = self.root
+            for letter in start:
+                if letter not in curr.children:
+                    return []
+                curr = curr.children[letter]
+            return self._auto_helper(curr, start)
+        raise TypeError('Autocomplete takes only strings.')
 
     def _auto_helper(self, node, start):
         """Helper fn for autocomplete."""
