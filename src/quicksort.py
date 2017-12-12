@@ -11,3 +11,11 @@ def quick_sort(a_list):
     smaller = []
     bigger = []
 
+    for x in a_list:
+        if x < ref[0]:
+            smaller.append(x)
+
+        else:
+            bigger.append(x)
+
+    return quick_sort(smaller) + ref + quick_sort(bigger)
