@@ -64,3 +64,59 @@ class Trie(object):
             if current.parent:
                 current = current.parent
         self.tree_size -= 1
+
+    def trie_traversal(self, start=None):
+        """Depth-first traveral of Trie."""
+        self.visited = []
+
+        if start:
+            curr = self.root
+            for char in start:
+                if char in curr.children:
+                    curr = curr.children[char]
+                return 'Invalid starting string.'
+            return self._combo_gen(curr)
+        else:
+            return self._combo_gen(self.root)
+
+    def _combo_gen(self, start):
+        """."""
+        for child, child_node in start.children.items():
+            self.visited.append(child)
+            for node in child_node.children:
+                self.visited.append(child_node.children[node].letter)
+                if child_node.children[node].end and not child_node.children:
+                    continue
+                child_node.children = child_node.children[node].children
+        for let in self.visited:
+            yield let
+
+    def _trie_gen(self, start):
+        """Generator for traversal function."""
+        for child in start.children:
+            return self._recursive_depth(start.children[child])
+
+    def _recursive_depth(self, node):
+        """Recursive helper fn for generator."""
+        self.visited.append(node.letter)
+        for child in node.children:
+            if child.end:
+                break
+            yield self._recursive_depth(node.children[child])
+
+    def autocomplete(self, start):
+        """Autocomplete using Trie Tree."""
+        curr = self.root
+        for letter in start:
+            if letter not in curr.children:
+                return []
+            curr = curr.children[letter]
+        return self._auto_helper(curr, start)
+
+    def _auto_helper(self, node, start):
+        """Helper fn for autocomplete."""
+        if node.end:
+            yield start
+        for letter in node.children:
+            for word in self._auto_helper(node.children[letter], start + letter):
+                yield word
