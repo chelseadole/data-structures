@@ -171,6 +171,8 @@ def test_trie_autocomplete_on_filled_tree_letter_h(filled_1):
     assert next(a) == 'hello'
     assert next(a) == 'helsinki'
     assert next(a) == 'heckingoodboye'
+    with pytest.raises(StopIteration):
+        assert next(a)
 
 
 def test_trie_autocomplete_on_filled_tree_letter_g(filled_1):
@@ -184,3 +186,9 @@ def test_trie_autocomplete_where_no_suggestions(filled_1):
     """Autocomplete with a letter not in Trie tree, makes empty list."""
     a = filled_1.autocomplete('z')
     assert a == []
+
+
+# def test_trie_autocomplete_where_no_suggestions(filled_1):
+#     """Autocomplete with a letter not in Trie tree, makes empty list."""
+#     a = filled_1.autocomplete('z')
+#     assert a == []
