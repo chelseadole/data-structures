@@ -16,12 +16,12 @@ def radix_sort(lst):
             else:
                 target = buckets[int(str_int[0])]
                 target.append(str_int)
-        flat_list = _append_backwards(buckets)
+        flat_list = _append(buckets)
         str_lst = flat_list
     return [int(i) for i in flat_list]
 
 
-def _append_backwards(buckets):
+def _append(buckets):
     """Helper function to flatten buckets into a single list."""
     flat_list = []
     for bucket in buckets:
