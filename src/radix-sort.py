@@ -18,7 +18,7 @@ def radix_sort(lst):
                 target.append(str_int)
         flat_list = _append_backwards(buckets)
         str_lst = flat_list
-    return flat_list
+    return [int(i) for i in flat_list]
 
 
 def _append_backwards(buckets):
