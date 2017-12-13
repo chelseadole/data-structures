@@ -5,6 +5,8 @@ def radix_sort(lst):
     """Implementation of Radix Sort in python."""
     if not isinstance(lst, list):
         raise TypeError('Input must be a list of integers.')
+    if len(lst) == 0:
+        return lst
     str_lst = [str(i) for i in lst]
     largest_int_len = len(str(max(lst)))
 
