@@ -2,6 +2,15 @@
 
 from radix_sort import radix_sort
 import pytest
+from random import randint
+
+TEST_CASES = (
+    [1, 2, 3, 4, 5, 6],
+    [6, 5, 4, 3, 2, 1],
+    [],
+    [5],
+    [randint(1, 1000) for i in range(50)]
+)
 
 
 def test_radix_sort_with_empty_lst():
@@ -37,10 +46,16 @@ def test_radix_sort_can_sort_len_2_lst():
     assert radix_sort(two_idx_lst) == [1, 44]
 
 
-def test_radix_sort_works_on_longer_lst():
-    """Radix sort sorts unordered_lst, where len(lst) == 16."""
-    longer_lst = [33, 26, 900, 22, 34, 1, 0, 2000, 22, 20, 90, 99, 200, 322, 1000]
-    assert radix_sort(longer_lst) == [0, 1, 20, 22, 22, 26, 33, 34, 90, 99, 200, 322, 900, 1000, 2000]
+def test_randomly_parameterized_lists():
+    """Random num sort."""
+    for i in range(20):
+        test_lst = [randint(1, 1000) for i in range(50)]
+        assert radix_sort(test_lst[:]) == sorted(test_lst[:])
+
+# def test_radix_sort_works_on_longer_lst():
+#     """Radix sort sorts unordered_lst, where len(lst) == 16."""
+#     longer_lst = [33, 26, 900, 22, 34, 1, 0, 2000, 22, 20, 90, 99, 200, 322, 1000]
+#     assert radix_sort(longer_lst) == [0, 1, 20, 22, 22, 26, 33, 34, 90, 99, 200, 322, 900, 1000, 2000]
 
 
 def test_radix_sort_on_presorted_lst():

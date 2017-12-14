@@ -14,13 +14,11 @@ def radix_sort(lst):
         buckets = [[] for i in range(10)]
         for str_int in str_lst:
             if len(str_int) < rep_num + 1:
-                buckets[0].append(int(str_int))
+                buckets[0].append(str_int)
             else:
-                target = buckets[int(str_int[0])]
-                target.append(str_int)
-        flat_list = _append(buckets)
-        str_lst = flat_list
-    return [int(i) for i in flat_list]
+                buckets[int(str_int[-1 - rep_num])].append(str_int)
+        str_lst = _append(buckets)
+    return [int(i) for i in str_lst]
 
 
 def _append(buckets):
@@ -28,5 +26,5 @@ def _append(buckets):
     flat_list = []
     for bucket in buckets:
         for num in bucket:
-            flat_list.append(str(num))
+            flat_list.append(num)
     return flat_list
