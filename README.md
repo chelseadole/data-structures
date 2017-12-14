@@ -20,6 +20,8 @@
 
 * **Mergesort** - *Mergesort sorts an input list numerically from smallest to largest by dividing it into sections, then sorting each section piece by piece. As the sections are merged/sorted, the length of the list gets smaller, until there are only two "sections" to merge. Once they are merged and sorted, the list is fully osorted. The runtime for this algorithm is O(n), because the runtime increases with the increase in length of list.*
 
+* **Quicksort** - *Quicksort sorts an input list numerically from smallest to largest by selecting a "pivot" value, and the rearranging the rest of the list around the pivot. The runtime for this algorithm is O(n log n), because though the runtime is relational to the size of the list, its increased runtime is not linear but logarithmic.*
+
 ## Time Complexities:
 
 * balance() = *This BST function returns the balance (or size difference) between the left and right parts of the tree. Its runtime is O(1), because it always takes the same amount of time to run regardless of tree size, and only performs simple subtraction.*
