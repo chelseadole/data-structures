@@ -8,6 +8,10 @@
 
 **Testing Tools**: pytest, pytest-cov
 
+## Sorting Algorithms: 
+
+* **Insertion Sort** - *The insertion sort algorithm sorts a list of numbers by looping through each individual number in the list one by one, and (if they are smaller than the last index) swapping the two numbers. Unlike bubble sort, after this swap the sort continues to swap the number down into lower indexed positions until it finds the right position. The runtime for this function is at worst-case O(n^2), because in that scenario the list would be exactly the reverse of what it should be.*
+
 ## Data Structures:
 
 * **Binary Search Tree** — *a BST is a "tree shaped" data structure containing nodes. Each node can have a maximum of two children or "leaves," and all node values are properly located based on its parents and siblings values. Nodes to the left of the "root"/head node have values smaller than the root. Those to the right have values larger than the root. There are no duplicate values.* 
