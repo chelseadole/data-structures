@@ -45,3 +45,11 @@ def test_list_on_randomized_lists():
         lst = [randint(0, 1000) for i in range(30)]
         sorted_lst = sorted(lst)
         assert insertion_sort(lst) == sorted_lst
+
+
+def test_list_on_randomized_long_lists():
+    """Test using randomly generated lists."""
+    for i in range(15):
+        long_lst = [randint(0, 1000) for i in range(100)]
+        sorted_long_lst = sorted(long_lst)
+        assert insertion_sort(long_lst) == sorted_long_lst
