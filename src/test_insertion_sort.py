@@ -39,6 +39,11 @@ def test_list_with_non_num_inside():
         assert insertion_sort([1, 2, 3, 4, 'five', 6, 7])
 
 
+def test_list_with_negatives():
+    """Test on list with neg numbers."""
+    assert insertion_sort([-32, 23, 1, 0, 900, -14]) == [-32, -14, 0, 1, 23, 900]
+
+
 def test_list_on_randomized_lists():
     """Test using randomly generated lists."""
     for i in range(60):
