@@ -43,5 +43,5 @@ def test_list_on_randomized_lists():
     """Test using randomly generated lists."""
     for i in range(60):
         lst = [randint(0, 1000) for i in range(30)]
-        sorted_lst = lst.sort()
+        sorted_lst = sorted(lst)
         assert insertion_sort(lst) == sorted_lst
