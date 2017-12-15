@@ -53,6 +53,7 @@ class LL {
     var curr = this.head;
     if (this.head.data === val) {
       this.head = this.head.nextNode;
+      this.counter --;
       return val;
     }
     if (this.head === null) {
@@ -64,6 +65,7 @@ class LL {
       }
       else if (curr.nextNode.data === val) {
         curr.nextNode = curr.nextNode.nextNode;
+        this.counter --;
         return val;
       }
       curr = curr.nextNode;
@@ -88,4 +90,6 @@ class LL {
     }
   }
 }
+
+module.exports = LL;
 
