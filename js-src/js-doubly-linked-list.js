@@ -27,4 +27,15 @@ class DLL {
             this.tail = this.head
         }
     }
+
+    pop() {
+        if (this.size() == 0) {
+            throw 'Cannot pop() from empty DoublyLinkedList.';
+        }
+        this.counter --;
+        var output = self.head.data;
+        this.head = self.head.nextNode;
+        this.head.prevNode = null;
+        return output;
+    }
 }

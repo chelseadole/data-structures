@@ -25,12 +25,12 @@ class LL {
     }   
 
     pop() {
-        if (this.size() == 0):
-            throw 'Cannot pop() from empty LinkedList.'
-        this.counter --;
-        else {
-            this.head = self.head.nextNode;
+        if (this.size() == 0) {
+            throw 'Cannot pop() from empty LinkedList.';
         }
-
+        this.counter --;
+        var output = self.head.data;
+        this.head = self.head.nextNode;
+        return output;
     }
 }
