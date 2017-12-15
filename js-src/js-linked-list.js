@@ -18,4 +18,19 @@ class LL {
             throw 'LinkedList only takes arrays as inputs.';
         }
     }
+
+    push(val) {
+        this.head = new Node(val, this.head);
+        this.counter ++;
+    }   
+
+    pop() {
+        if (this.size() == 0):
+            throw 'Cannot pop() from empty LinkedList.'
+        this.counter --;
+        else {
+            this.head = self.head.nextNode;
+        }
+
+    }
 }
