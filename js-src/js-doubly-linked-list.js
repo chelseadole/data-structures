@@ -38,4 +38,8 @@ class DLL {
         this.head.prevNode = null;
         return output;
     }
+
+    size() {
+        return this.counter;
+    }
 }

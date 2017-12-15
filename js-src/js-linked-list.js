@@ -33,4 +33,8 @@ class LL {
         this.head = self.head.nextNode;
         return output;
     }
+
+    size() {
+        return this.counter;
+    }
 }
