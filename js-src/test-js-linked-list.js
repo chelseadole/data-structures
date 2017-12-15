@@ -42,3 +42,48 @@ describe('linked_list.js tests', () => {
         expect(testList.pop()).to.equal(3);
         expect(testList.head.data).to.equal(4);
     });
+
+    it("size function works with push and pop", () => {
+        var testList = new linkedList.LL([1, 2, 3, 4, 5]);
+        expect(testList.size()).to.equal(5);
+        testList.push(0);
+        expect(testList.size()).to.equal(6)
+        testList.pop();
+        expect(testList.size()).to.equal(5);
+    });
+
+    it("search on list without searched value", () => {
+       var testList = new linkedList.LL();
+       testList.push(5);
+       expect(testList.search(2)).to.equal('This value is not in the LinkedList.');
+    });
+
+    it('correct search method works', () => {
+        var testList = new linkedList.LL();
+        testList.push(5);
+        testList.push(4);
+        expect(testList.search(5)).to.equal(5);
+    });
+
+    it("remove method with item in head of list", () => {
+        var testList = new linkedList.LL();
+        testList.push(1);
+        expect(testList.size()).to.equal(1);
+        expect(testList.remove(1)).to.equal(1);
+        expect(testList.size()).to.equal(0);
+    });
+
+    it("remove method with item in middle of list", () => {
+        var testList = new linkedList.LL([1, 2, 3, 4, 5]);
+        expect(testList.size()).to.equal(5);
+        expect(testList.remove(3)).to.equal(3);
+        expect(testList.size()).to.equal(4);
+        expect(testList.search(3)).to.equal('This value is not in the LinkedList.');
+    });
+
+    it("display method", () => {
+        var testList = new linkedList.LL([1, 2, 3, 4, 5]);
+        expect(testList.display()).to.be.string('(5, 4, 3, 2, 1)');
+    });
+});
+
