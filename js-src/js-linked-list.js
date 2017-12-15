@@ -37,4 +37,16 @@ class LL {
     size() {
         return this.counter;
     }
+
+    search(val) {
+        curr = this.head;
+        while (curr.data != val) {
+            if (curr.nextNode == null) {
+                throw 'This value is not in the LinkedList.'
+            }
+            curr = curr.nextNode;
+        }
+        return curr;
+
+    }
 }

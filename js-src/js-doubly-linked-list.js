@@ -24,7 +24,7 @@ class DLL {
         this.head = new Node(this.val, this.head);
         this.counter ++;
         if (this.size() == 1) {
-            this.tail = this.head
+            this.tail = this.head;
         }
     }
 
@@ -41,5 +41,33 @@ class DLL {
 
     size() {
         return this.counter;
+    }
+
+    search(val) {
+        curr = this.head;
+        while (curr.data != val) {
+            if (curr.nextNode == null) {
+                throw 'This value is not in the LinkedList.'
+            }
+            curr = curr.nextNode;
+        }
+        return curr;
+    }
+
+    remove(val) {
+        curr = this.head;
+        while (curr.data != val) {
+            if (curr.nextNode == null) {
+                throw 'Values not in the LinkedList cannot be removed.'
+            }
+            curr = curr.nextNode;
+        }
+        if (curr.prevNode) {
+            curr.prevNode.nextNode = curr.nextNode;
+        }
+        if (curr.nextNode) {
+            curr.nextNode.prevNode = curr.prevNode;
+        }
+
     }
 }
