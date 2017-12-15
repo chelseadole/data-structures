@@ -129,3 +129,5 @@ class DLL {
         }
     }
 }
+
+module.exports = DLL;
