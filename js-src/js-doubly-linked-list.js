@@ -1,10 +1,10 @@
 "use strict";
 
 class Node {
-    constructor(data, nextNode=None, prevNode=None) {
+    constructor(data, nextNode=null, prevNode=null) {
         this.data = data;
         this.nextNode = nextNode;
-        this.prevNode = prevNode
+        this.prevNode = prevNode;
     }
 }
 
@@ -12,30 +12,35 @@ class DLL {
     constructor(iter=null) {
         this.head = null;
         this.tail = null;
+        this.counter = 0;
         if (Array.isArray(iter)) {
-            iterable.forEach(item => this.push(item));
+            iter.forEach(item => this.push(item));
         }
-        else if (iter != null) {
+        else if (iter !== null) {
             throw 'LinkedList only takes arrays as inputs.';
         }
     }
 
     push(val) {
-        this.head = new Node(this.val, this.head);
+        this.head = new Node(val, this.head);
         this.counter ++;
-        if (this.size() == 1) {
+        if (this.size() === 1) {
             this.tail = this.head;
+        } else {
+            this.head.nextNode.prevNode = this.head;
         }
     }
 
     pop() {
-        if (this.size() == 0) {
+        if (this.size() === 0) {
             throw 'Cannot pop() from empty DoublyLinkedList.';
         }
         this.counter --;
-        var output = self.head.data;
-        this.head = self.head.nextNode;
-        this.head.prevNode = null;
+        var output = this.head.data;
+        this.head = this.head.nextNode;
+        if (this.head) {
+            this.head.prevNode = null;
+        }
         return output;
     }
 
@@ -45,8 +50,8 @@ class DLL {
 
     search(val) {
         var curr = this.head;
-        while (curr.data != val) {
-            if (curr.nextNode == null) {
+        while (curr.data !== val) {
+            if (curr.nextNode === null) {
                 throw 'This value is not in the LinkedList.'
             }
             curr = curr.nextNode;
@@ -56,24 +61,71 @@ class DLL {
 
     remove(val) {
         var curr = this.head;
-        if (this.head == null) {
-            throw 'Cannot remove vals from empty LinkedList.'
-        }
+        var prev = null;
         while (curr) {
+            if (curr.data == val) {
+                this.counter --;
+                if (curr == this.head) {
+                    this.head = curr.nextNode;
+                    this.head.prevNode = null;
+                    return curr.data;
+                }
+                prev.nextNode = curr.nextNode;
+                curr.nextNode.prevNode = prev;
+                return curr.data;
+            }
             if (curr.nextNode == null) {
-                throw 'Values not in the LinkedList cannot be removed.'
+                throw 'Values not in the DoublyLinkedList cannot be removed.';
             }
-            else if (curr.data == val) {
-                if (curr.prevNode) {
-                    curr.prevNode.nextNode = curr.nextNode;
-                }
-                if (curr.nextNode) {
-                    curr.nextNode.prevNode = curr.prevNode;
-                }
-                return curr.data
-            }
+            prev = curr;
             curr = curr.nextNode;
         }
+        return curr;
+    }
 
+    append(val){
+        var firstTail = this.tail;
+        this.tail = new Node(val, this.prevNode=this.tail);
+        this.counter ++;
+        if(firstTail){
+            firstTail.nextNode = this.tail;
+        } else {
+            this.head = this.tail;
+        }
+        this.tail.nextNode = null;
+    }
+
+    shift(){
+        if (!this.tail){
+            throw "Cannot shift() from empty DLL.";
+        }
+        var output = this.tail.data;
+        this.tail = this.tail.prevNode;
+        if(this.tail) {
+            this.tail.nextNode = null;
+        } else {
+            this.head = null;
+        }
+        this.counter --;
+        return output;
+    }
+
+
+    display() {
+        var start_paren = "(";
+        if (this.head === null) {
+            return '()';
+        }
+        var curr = this.head;
+        while (curr) {
+            if (curr.nextNode === null) {
+                start_paren += curr.data + ')';
+                return start_paren;
+            }
+            else {
+                start_paren += curr.data + ', ';
+                curr = curr.nextNode;
+            }
+        }
     }
 }
