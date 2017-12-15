@@ -44,7 +44,7 @@ class DLL {
     }
 
     search(val) {
-        curr = this.head;
+        var curr = this.head;
         while (curr.data != val) {
             if (curr.nextNode == null) {
                 throw 'This value is not in the LinkedList.'
@@ -55,18 +55,24 @@ class DLL {
     }
 
     remove(val) {
-        curr = this.head;
-        while (curr.data != val) {
+        var curr = this.head;
+        if (this.head == null) {
+            throw 'Cannot remove vals from empty LinkedList.'
+        }
+        while (curr) {
             if (curr.nextNode == null) {
                 throw 'Values not in the LinkedList cannot be removed.'
             }
+            else if (curr.data == val) {
+                if (curr.prevNode) {
+                    curr.prevNode.nextNode = curr.nextNode;
+                }
+                if (curr.nextNode) {
+                    curr.nextNode.prevNode = curr.prevNode;
+                }
+                return curr.data
+            }
             curr = curr.nextNode;
-        }
-        if (curr.prevNode) {
-            curr.prevNode.nextNode = curr.nextNode;
-        }
-        if (curr.nextNode) {
-            curr.nextNode.prevNode = curr.prevNode;
         }
 
     }
