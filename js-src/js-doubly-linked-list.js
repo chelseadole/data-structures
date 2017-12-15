@@ -66,6 +66,11 @@ class DLL {
             if (curr.data == val) {
                 this.counter --;
                 if (curr == this.head) {
+                    if (this.head == this.tail) {
+                        this.head = null;
+                        this.tail = null;
+                        return curr.data;
+                    }
                     this.head = curr.nextNode;
                     this.head.prevNode = null;
                     return curr.data;

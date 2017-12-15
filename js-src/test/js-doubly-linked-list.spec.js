@@ -74,7 +74,7 @@ describe('js-doubly-linked-list.js tests', () => {
     });
 
     it("remove method with item in middle of list", () => {
-        var testList = new DLL();
+        var testList = new DLL([1, 2, 3, 4, 5]);
         expect(testList.size()).to.equal(5);
         expect(testList.remove(3)).to.equal(3);
         expect(testList.size()).to.equal(4);
@@ -118,7 +118,7 @@ describe('js-doubly-linked-list.js tests', () => {
     });
 
     it("display method", () => {
-        var testList = new DLL();
+        var testList = new DLL([1, 2, 3, 4, 5]);
         expect(testList.display()).to.be.string('(5, 4, 3, 2, 1)');
     });
 });
