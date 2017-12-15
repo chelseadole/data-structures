@@ -18,6 +18,8 @@
 
 * **Trie Tree** - *a Trie Tree is a "tree shaped" data structure containing nodes with references to letters. These nodes string together (using each node's "children" and "parent" attriutes) to form words. This tree allows for quick lookup time of words, and is used for things such as word suggestion/auto-complete.*
 
+* **Linked List (JavaScript)** - *A singly linked list is a data structure made of nodes, all of which have a single "next" pointer pointing from the head to the tail. The runtime of traversing the LL is O(n) because it grows proportionally with the length of the list.*
+
 ## Time Complexities:
 
 * balance() = *This BST function returns the balance (or size difference) between the left and right parts of the tree. Its runtime is O(1), because it always takes the same amount of time to run regardless of tree size, and only performs simple subtraction.*
