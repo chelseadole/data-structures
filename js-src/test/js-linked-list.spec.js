@@ -75,7 +75,7 @@ describe('linked_list.js tests', () => {
         expect(testList.size()).to.equal(5);
         expect(testList.remove(3)).to.equal(3);
         expect(testList.size()).to.equal(4);
-        expect(testList.search(3)).to.equal('This value is not in the LinkedList.');
+        expect(testList.search(3)).to.throw('This value is not in the LinkedList.');
     });
 
     it("display method", () => {
