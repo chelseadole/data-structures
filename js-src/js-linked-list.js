@@ -2,17 +2,17 @@
 
 class Node {
   constructor(data, nextNode=null) {
-    this.data = data;
-    this.nextNode = nextNode;
+    this.data = data
+    this.nextNode = nextNode
   }
 }
 
 class LL {
   constructor(iter=null) {
-    this.head = null;
-    this.counter = 0;
+    this.head = null
+    this.counter = 0
     if (Array.isArray(iter)) {
-      iter.forEach(item => this.push(item));
+      iter.forEach(item => this.push(item))
     }
     else if (iter !== null) {
       return 'LinkedList only takes arrays as inputs.';
@@ -20,18 +20,18 @@ class LL {
   }
 
   push(val) {
-    this.head = new Node(val, this.head);
-    this.counter ++;
+    this.head = new Node(val, this.head)
+    this.counter ++
   }
 
   pop() {
     if (this.counter === 0) {
       return 'Cannot pop() from empty LinkedList.';
     }
-    var output = this.head.data;
-    this.head = this.head.nextNode;
-    this.counter --;
-    return output;
+    var output = this.head.data
+    this.head = this.head.nextNode
+    this.counter --
+    return output
   }
 
   size() {
@@ -39,53 +39,53 @@ class LL {
   }
 
   search(val) {
-    var curr = this.head;
+    var curr = this.head
     while (curr.data !== val) {
       if (curr.nextNode === null) {
         return 'This value is not in the LinkedList.';
       }
-      curr = curr.nextNode;
+      curr = curr.nextNode
     }
     return curr;
   }
 
   remove(val) {
-    var curr = this.head;
+    var curr = this.head
     if (this.head.data === val) {
-      this.head = this.head.nextNode;
-      this.counter --;
-      return val;
+      this.head = this.head.nextNode
+      this.counter --
+      return val
     }
     if (this.head === null) {
-      return 'Cannot remove vals from empty LinkedList.';
+      return 'Cannot remove vals from empty LinkedList.'
     }
     while (curr) {
       if (curr.nextNode === null) {
         return 'Values not in the LinkedList cannot be removed.';
       }
       else if (curr.nextNode.data === val) {
-        curr.nextNode = curr.nextNode.nextNode;
-        this.counter --;
-        return val;
+        curr.nextNode = curr.nextNode.nextNode
+        this.counter --
+        return val
       }
-      curr = curr.nextNode;
+      curr = curr.nextNode
     }
   }
 
   display() {
-    var start_paren = '(';
+    var start_paren = '('
     if (this.head === null) {
-      return '()';
+      return '()'
     }
-    var curr = this.head;
+    var curr = this.head
     while (curr) {
       if (curr.nextNode === null) {
-        start_paren += curr.data + ')';
+        start_paren += curr.data + ')'
         return start_paren;
       }
       else {
-        start_paren += curr.data + ', ';
-        curr = curr.nextNode;
+        start_paren += curr.data + ', '
+        curr = curr.nextNode
       }
     }
   }
