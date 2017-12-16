@@ -22,15 +22,15 @@ class Q {
         }
     }
 
+    size() {
+        return this.dll.counter;
+    }
+
     peek() {
         if (this.dll.counter === 0) {
             return 'Queue has no values.'
         }
         return this.dll.tail.data;
-    }
-
-    size() {
-        return this.dll.counter;
     }
 }
 
