@@ -17,7 +17,7 @@ class DLL {
             iter.forEach(item => this.push(item))
         }
         else if (iter !== null) {
-            return 'LinkedList only takes arrays as inputs.'
+            throw 'LinkedList only takes arrays as inputs.'
         }
     }
 
@@ -33,7 +33,7 @@ class DLL {
 
     pop() {
         if (this.size() === 0) {
-            return 'Cannot pop() from empty DoublyLinkedList.'
+            throw 'Cannot pop() from empty DoublyLinkedList.'
         }
         this.counter --
         var output = this.head.data
@@ -52,7 +52,7 @@ class DLL {
         var curr = this.head
         while (curr.data !== val) {
             if (curr.nextNode === null) {
-                return 'This value is not in the LinkedList.'
+                throw 'This value is not in the LinkedList.'
             }
             curr = curr.nextNode
         }
@@ -80,7 +80,7 @@ class DLL {
                 return curr.data
             }
             if (curr.nextNode == null) {
-                return 'Values not in the DoublyLinkedList cannot be removed.'
+                throw 'Values not in the DoublyLinkedList cannot be removed.'
             }
             prev = curr
             curr = curr.nextNode
@@ -102,7 +102,7 @@ class DLL {
 
     shift(){
         if (!this.tail){
-            return "Cannot shift() from empty DLL."
+            throw "Cannot shift() from empty DLL."
         }
         var output = this.tail.data
         this.tail = this.tail.prevNode

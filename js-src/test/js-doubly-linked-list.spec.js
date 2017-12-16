@@ -52,12 +52,6 @@ describe('js-doubly-linked-list.js tests', () => {
         expect(testList.size()).to.equal(5);
     });
 
-    it("search on list without searched value", () => {
-       var testList = new DLL();
-       testList.push(5);
-       expect(testList.search(2)).to.equal('This value is not in the LinkedList.');
-    });
-
     it('correct search method works', () => {
         var testList = new DLL();
         testList.push(5);
@@ -78,7 +72,6 @@ describe('js-doubly-linked-list.js tests', () => {
         expect(testList.size()).to.equal(5);
         expect(testList.remove(3)).to.equal(3);
         expect(testList.size()).to.equal(4);
-        expect(testList.search(3)).to.equal('This value is not in the LinkedList.');
     });
 
     it("append method works on filled list", () => {
@@ -97,11 +90,6 @@ describe('js-doubly-linked-list.js tests', () => {
         expect(testList.tail.data).to.equal(100);
         expect(testList.head.data).to.equal(100);
 
-    });
-
-    it("shift method doesnt work on empty list", () => {
-        var testList = new DLL();
-        expect(testList.shift()).to.equal('Cannot shift() from empty DLL.');
     });
 
     it("shift method works on filled list", () => {
