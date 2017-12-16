@@ -30,7 +30,7 @@ describe('stack.js tests', () => {
         expect(testStack.size()).to.equal(1);
     });
 
-    it("test pop on non-empty list.", () => {
+    it("test pop on non-empty stack.", () => {
         var testStack = new Stack();
         testStack.push(5);
         testStack.push(4);
