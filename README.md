@@ -20,6 +20,8 @@
 
 * **Linked List (JavaScript)** - *A singly linked list is a data structure made of nodes, all of which have a single "next" pointer pointing from the head to the tail. The runtime of traversing the LL is O(n) because it grows proportionally with the length of the list.*
 
+* **Stack (JavaScript)** - *A stack is much like a singly linked list. It can be visualized as a stack of cards, and it is a "last in, first out" data structure that pops and pushes to the same end (or 'top') of the structure. It has O(n) runtime.*
+
 ## Time Complexities:
 
 * balance() = *This BST function returns the balance (or size difference) between the left and right parts of the tree. Its runtime is O(1), because it always takes the same amount of time to run regardless of tree size, and only performs simple subtraction.*
