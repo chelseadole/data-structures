@@ -10,7 +10,7 @@ class Stack {
             iter.forEach(item => this.push(item))
         }
     }
-    
+
     size(){
         return this.linked.size()
     }

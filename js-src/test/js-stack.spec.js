@@ -8,20 +8,20 @@ describe('stack.js tests', () => {
     it('creating a new empty Stack', () => {
         var testStack = new Stack();
         expect(testStack.size()).to.equal(0);
-        expect(testStack.head).to.equal(null);
+        expect(testStack.linked.head).to.equal(null);
     });
 
     it('passing iterable into new Stack and pushing.', () => {
         var testStack = new Stack([100, 200, 300, 400, 500]);
         expect(testStack.size()).to.equal(5);
-        expect(testStack.head.data).to.equal(500);
+        expect(testStack.linked.head.data).to.equal(500);
 
     });
  
     it('testing push method changes head', () => {
         var testStack = new Stack();
         testStack.push('yo');
-        expect(testStack.head.data).to.equal('yo');
+        expect(testStack.linked.head.data).to.equal('yo');
     });
 
     it('test push method adds one to size.', () => {
@@ -35,9 +35,9 @@ describe('stack.js tests', () => {
         testStack.push(5);
         testStack.push(4);
         testStack.push(3);
-        expect(testStack.head.data).to.equal(3);
+        expect(testStack.linked.head.data).to.equal(3);
         expect(testStack.pop()).to.equal(3);
-        expect(testStack.head.data).to.equal(4);
+        expect(testStack.linked.head.data).to.equal(4);
     });
 
     it("size function works with push and pop", () => {
