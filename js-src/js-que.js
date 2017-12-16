@@ -2,9 +2,12 @@
 
 const DLL = require('./js-doubly-linked-list')
 
-class Queue {
-    constructor(){
+class Q {
+    constructor(iter=null){
         this.dll = new DLL()
+        if (Array.isArray(iter)) {
+            iter.forEach(item => this.enqueue(item))
+        }
     }
 
     enqueue(val) {
@@ -31,4 +34,4 @@ class Queue {
     }
 }
 
-module.exports = Queue
+module.exports = Q
