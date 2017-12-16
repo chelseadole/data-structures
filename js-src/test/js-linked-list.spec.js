@@ -49,12 +49,6 @@ describe('linked_list.js tests', () => {
         expect(testList.size()).to.equal(5);
     });
 
-    it("search on list without searched value", () => {
-       var testList = new linkedList();
-       testList.push(5);
-       expect(testList.search(2)).to.equal('This value is not in the LinkedList.');
-    });
-
     it('correct search method works', () => {
         var testList = new linkedList();
         testList.push(5);
@@ -75,7 +69,6 @@ describe('linked_list.js tests', () => {
         expect(testList.size()).to.equal(5);
         expect(testList.remove(3)).to.equal(3);
         expect(testList.size()).to.equal(4);
-        expect(testList.search(3)).to.equal('This value is not in the LinkedList.');
     });
 
     it("display method", () => {
