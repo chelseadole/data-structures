@@ -22,6 +22,8 @@
 
 * **Stack (JavaScript)** - *A stack is much like a singly linked list. It can be visualized as a stack of cards, and it is a "last in, first out" data structure that pops and pushes to the same end (or 'top') of the structure. It has O(n) runtime.*
 
+* **Queue (JavaScript)** - *A queue is much like a doubly-linked list, but with different syntax and less flexible capabilities. It is a data structure where you add (enqueue) to the front, but remove (dequeue) off the back. The runtime is O(n).*
+
 ## Time Complexities:
 
 * balance() = *This BST function returns the balance (or size difference) between the left and right parts of the tree. Its runtime is O(1), because it always takes the same amount of time to run regardless of tree size, and only performs simple subtraction.*
