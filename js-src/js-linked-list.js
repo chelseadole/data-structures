@@ -15,7 +15,7 @@ class LL {
       iter.forEach(item => this.push(item))
     }
     else if (iter !== null) {
-      return 'LinkedList only takes arrays as inputs.';
+      throw 'LinkedList only takes arrays as inputs.'
     }
   }
 
@@ -26,7 +26,7 @@ class LL {
 
   pop() {
     if (this.counter === 0) {
-      return 'Cannot pop() from empty LinkedList.';
+      throw 'Cannot pop() from empty LinkedList.'
     }
     var output = this.head.data
     this.head = this.head.nextNode
@@ -42,7 +42,7 @@ class LL {
     var curr = this.head
     while (curr.data !== val) {
       if (curr.nextNode === null) {
-        return 'This value is not in the LinkedList.';
+        throw 'This value is not in the LinkedList.'
       }
       curr = curr.nextNode
     }
@@ -57,11 +57,11 @@ class LL {
       return val
     }
     if (this.head === null) {
-      return 'Cannot remove vals from empty LinkedList.'
+      throw 'Cannot remove vals from empty LinkedList.'
     }
     while (curr) {
       if (curr.nextNode === null) {
-        return 'Values not in the LinkedList cannot be removed.';
+        throw 'Values not in the LinkedList cannot be removed.'
       }
       else if (curr.nextNode.data === val) {
         curr.nextNode = curr.nextNode.nextNode
