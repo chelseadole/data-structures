@@ -20,6 +20,8 @@
 
 * **Mergesort** - *Mergesort sorts an input list numerically from smallest to largest by dividing it into sections, then sorting each section piece by piece. As the sections are merged/sorted, the length of the list gets smaller, until there are only two "sections" to merge. Once they are merged and sorted, the list is fully osorted. The runtime for this algorithm is O(n), because the runtime increases with the increase in length of list.*
 
+* **Radix Sort** = *Radix sort sorts an input list numerically by looking at the individual numbers of the numbers, starting at the tens place, and going up to the highest place in the number. The numbers are put into "buckets" based on this, and then the buckets are continuously built and remade until the list is sorted. The runtime for this algorithm is O(n^2), because the length depends on the length of the largest number.*
+
 ## Time Complexities:
 
 * balance() = *This BST function returns the balance (or size difference) between the left and right parts of the tree. Its runtime is O(1), because it always takes the same amount of time to run regardless of tree size, and only performs simple subtraction.*
